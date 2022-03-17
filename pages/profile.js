@@ -41,7 +41,7 @@ function Profile(props) {
               </CardText>
             </CardBody>
             <div className="card-footer">
-              <Button disabled="true" color="success" >
+              <Button disabled={true} color="success" >
                 Save
               </Button>
             </div>
