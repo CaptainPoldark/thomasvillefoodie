@@ -3,7 +3,7 @@
 import React, { useContext } from "react";
 import Head from "next/head";
 import Link from "next/link";
-import { Container, Nav, NavItem } from "reactstrap";
+import { Container, Nav, NavItem, Badge } from "reactstrap";
 import { logout } from "../components/auth";
 import AppContext from "./context";
 
@@ -36,20 +36,18 @@ const Layout = () => {
             }
           `}
         </style>
-        <Nav className="navbar navbar-dark bg-dark">
+
+        <Nav className="navbar navbar-dark bg-dark justify-content-end">
           <NavItem>
             <Link href="/">
               <a className="navbar-brand">Home</a>
             </Link>
           </NavItem>
-          <NavItem className="ml-auto">
+          <NavItem>
             {isAuthenticated ? (
-              <div>
-                
-                <Link href="/profile">
-                  <a className="nav-link"> Settings </a>
-                </Link>
-              </div>
+              <Link href="/profile">
+                <a className="nav-link"> Settings </a>
+              </Link>
             ) : (
               <Link href="/register">
                 <a className="nav-link"> Sign up! </a>
@@ -58,28 +56,31 @@ const Layout = () => {
           </NavItem>
           <NavItem>
             {isAuthenticated ? (
-              <div>
-                <h4>{isAuthenticated}</h4>
+              <Link href="/">
+                <a
+                  className="nav-link"
+                  onClick={() => {
+                    logout();
 
-                <Link href="/">
-                  <a
-                    className="nav-link"
-                    onClick={() => {
-                      logout();
-                      console.log(token);
-                      setUser(null);
-                    }}
-                  >
-                    Logout
-                  </a>
-                </Link>
-              </div>
+                    setUser(null);
+                  }}
+                >
+                  Logout
+                </a>
+              </Link>
             ) : (
               <Link href="/login">
                 <a className="nav-link">Sign in </a>
               </Link>
             )}
           </NavItem>
+          {isAuthenticated ? (
+            <Badge pill bg="primary">
+              Hey, {user.username}
+            </Badge>
+          ) : (
+            ""
+          )}
         </Nav>
       </header>
       <Container></Container>

@@ -5,6 +5,7 @@ import { CardElement, useStripe, useElements } from "@stripe/react-stripe-js";
 import CardSection from "./cardSection";
 import AppContext from "./context";
 import Cookies from "js-cookie";
+import Router from "next/router";
 
 function CheckoutForm() {
   const [data, setData] = useState({
@@ -27,6 +28,7 @@ function CheckoutForm() {
   }
 
   async function submitOrder() {
+    setError("Payment Processing...");
     // event.preventDefault();
 
     // // Use elements.getElement to get a reference to the mounted Element.
@@ -59,21 +61,17 @@ function CheckoutForm() {
         },
       }),
     });
-    console.log(JSON.stringify(response));
-    console.log(`User Token :${userToken}`);
-    console.log({
-      amount: Number(Math.round(appContext.cart.total + "e2") + "e-2"),
-      dishes: appContext.cart.items,
-      address: data.address,
-      city: data.city,
-      state: data.state,
-      token: token.token.id,
-    });
 
     if (!response.ok) {
+      console.log(response);
       setError(response.statusText);
-      console.log("SUCCESS");
+
       console.log(response.statusText);
+    }
+    if (response.ok) {
+      setError("Payment Processed Successfully!");
+      
+      setTimeout(1000, Router.push("/"));
     }
 
     // OTHER stripe methods you can use depending on app

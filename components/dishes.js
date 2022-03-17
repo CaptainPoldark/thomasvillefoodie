@@ -12,9 +12,10 @@ import {
   Row,
   Col,
 } from "reactstrap";
-function Dishes({ restId }) {
-  const [restaurantID, setRestaurantID] = useState();
-  const { addItem } = useContext(AppContext);
+function Dishes() {
+  //const [restaurantID, setRestaurantID] = useState();
+
+  const { addItem, restID } = useContext(AppContext);
 
   const GET_RESTAURANT_DISHES = gql`
     query Dishes($ID: ID!) {
@@ -48,7 +49,7 @@ function Dishes({ restId }) {
   const router = useRouter();
 
   const { loading, error, data } = useQuery(GET_RESTAURANT_DISHES, {
-    variables: { ID: restId },
+    variables: { ID: restID.ID },
   });
 
   if (loading) return <p>Loading...</p>;
@@ -57,12 +58,12 @@ function Dishes({ restId }) {
 
   let restaurant = data.restaurant.data;
 
-  if (restId > 0) {
+  if (restID.ID > 0) {
     return (
       <>
         {restaurant.attributes.dishes.data.map((res) => (
           <Col xs="6" sm="4" style={{ padding: 0 }} key={res.id}>
-            <Card style={{ margin: "0 0.5rem 20px 0.5rem", height: "45em" }}>
+            <Card style={{ margin: "1.2em", height: "auto" }}>
               <CardImg
                 top={true}
                 style={{ height: "auto" }}

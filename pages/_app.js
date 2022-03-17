@@ -5,7 +5,14 @@ import Home from "./index";
 import Layout from "../components/layout";
 import Cookie from "js-cookie";
 import axios from "axios";
-import { Button, Card, CardBody, CardTitle, Badge, Container } from "reactstrap";
+import {
+  Button,
+  Card,
+  CardBody,
+  CardTitle,
+  Badge,
+  Container,
+} from "reactstrap";
 import Link from "next/link";
 import {
   ApolloProvider,
@@ -18,10 +25,22 @@ import ApolloHelper from "../components/apolloHelper";
 function MyApp(props) {
   const { Component, pageProps } = props;
   const token = Cookie.get("token");
-  var { cart, addItem, removeItem, user, setUser, isAuthenticated } =
-    useContext(AppContext);
+  var {
+    cart,
+    addItem,
+    removeItem,
+    emptyCart,
+    user,
+    setUser,
+    isAuthenticated,
+    setRestID,
+    restID,
+  } = useContext(AppContext);
   const [state, setState] = useState({
     cart: cart,
+  });
+  const [restState, setRestState] = useState({
+    restID
   });
   const [userState, setUserState] = useState({
     user: user,
@@ -35,6 +54,10 @@ function MyApp(props) {
   const link = new HttpLink({ uri: `${API_URL}/graphql` });
   const cache = new InMemoryCache();
   const client = new ApolloClient({ link, cache }); */
+
+  setRestID = (ID, name) => {
+    setRestState({ ID: ID, Name: name });
+  };
 
   if (userState.isAuthenticated == false) {
     if (token) {
@@ -134,7 +157,11 @@ function MyApp(props) {
         total: state.cart.total - item.attributes.price,
       };
     }
+
     setState({ cart: newCart });
+  };
+  emptyCart = () => {
+    setState({ cart: [] });
   };
 
   return (
@@ -146,6 +173,8 @@ function MyApp(props) {
         isAuthenticated: userState.isAuthenticated,
         user: userState.user,
         setUser: () => {},
+        setRestID,
+        restID: restState,
       }}
     >
       <ApolloProvider client={apolloClient}>

@@ -10,6 +10,7 @@ const AppContext = React.createContext({
   cart: { items: [], total: 0 },
   addItem: () => {},
   removeItem: () => {},
+  emptyCart: () => {},
   user: {
     id: Number,
     username: String,
@@ -21,6 +22,7 @@ const AppContext = React.createContext({
     updatedAt: String,
   },
   setUser: () => {},
+  restID: Number,
 });
 
 export default AppContext;

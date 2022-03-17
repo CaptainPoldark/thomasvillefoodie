@@ -19,6 +19,8 @@ const Register = () => {
   const [data, setData] = useState({ email: "", username: "", password: "" });
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState({});
+  const [status, setStatus] = useState("");
+  const [formDisabled, setFormDisabled] = useState(false);
   const appContext = useContext(AppContext);
   return (
     <Container>
@@ -26,7 +28,16 @@ const Register = () => {
         <Col sm="12" md={{ size: 5, offset: 3 }}>
           <div className="paper">
             <div className="header">
-              <img src="http://localhost:1337/uploads/5a60a9d26a764e7cba1099d8b157b5e9.png" />
+              <div
+                style={{
+                  display: "flex",
+                  justifyContent: "center",
+                  alignItems: "center",
+                  height: "100%",
+                }}
+              >
+                <h2 style={{ color: "white" }}>Register For An Account</h2>
+              </div>
             </div>
             <section className="wrapper">
               {Object.entries(error).length !== 0 &&
@@ -44,7 +55,7 @@ const Register = () => {
                   );
                 })}
               <Form>
-                <fieldset disabled={loading}>
+                <fieldset disabled={formDisabled}>
                   <FormGroup>
                     <Label>Username:</Label>
                     <Input
@@ -84,9 +95,9 @@ const Register = () => {
                   </FormGroup>
                   <FormGroup>
                     <span>
-                      <a href="">
-                        <small>Forgot Password?</small>
-                      </a>
+                      <small>
+                        <h3>{status}</h3>
+                      </small>
                     </span>
                     <Button
                       style={{ float: "right", width: 120 }}
@@ -96,15 +107,24 @@ const Register = () => {
                         setLoading(true);
                         registerUser(data.username, data.email, data.password)
                           .then((res) => {
+                            setFormDisabled(true);
                             // set authed user in global context object
-                            appContext.setUser(res.data.user);
+                            //appContext.setUser(res.data.user);
                             setLoading(false);
-                            console.log(`registered user: ${JSON.stringify(res.data)}`)
+                            console.log(
+                              `registered user: ${JSON.stringify(res.data)}`
+                            );
+                            setStatus(
+                              "Your account has been registered. Please Login"
+                            );
                           })
                           .catch((error) => {
-                            console.log(`error in register: ${error}`)
+                            console.log(`error in register: ${error}`);
                             //setError(error.response.data);
                             setLoading(false);
+                            setStatus(
+                              "Something wasn't right. Fill in all fields."
+                            );
                           });
                       }}
                     >

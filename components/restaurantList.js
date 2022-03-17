@@ -1,6 +1,7 @@
 import { gql, useQuery } from "@apollo/client";
 import Dishes from "./dishes";
 import { useContext, useState } from "react";
+import { useRouter } from "next/router";
 
 import AppContext from "./context";
 import {
@@ -16,9 +17,10 @@ import {
 } from "reactstrap";
 
 function RestaurantList(props) {
-  const [restaurantID, setRestaurantID] = useState(0);
-  const { cart } = useContext(AppContext);
+  const { cart, setRestID, restID } = useContext(AppContext);
+  const [restaurantID, setRestaurantID] = useState(restID);
   const [state, setState] = useState(cart);
+  const router = useRouter();
   const GET_RESTAURANTS = gql`
     query {
       restaurants {
@@ -55,10 +57,18 @@ function RestaurantList(props) {
   const renderDishes = (restaurantID) => {
     return <Dishes restId={restaurantID}> </Dishes>;
   };
+
+  const applyRestID = (ID, name) => {
+    setRestID(ID, name);
+    let path = searchQuery[ID - 1].attributes.name;
+    path = path.split(" ").join("");
+
+    router.push(`/restaurants/${path}`);
+  };
   if (searchQuery.length > 0) {
     const restList = searchQuery.map((res) => (
-      <Col xs="6" sm="4" key={res.id}>
-        <Card style={{ margin: "0 0.5rem 20px 0.5rem", height: "32rem" }}>
+      <Col sm="4" medium="6" key={res.id}>
+        <Card style={{ marginTop: "1em", height: "30rem" }}>
           <CardTitle>
             <h3>{res.attributes.name}</h3>
           </CardTitle>
@@ -73,7 +83,7 @@ function RestaurantList(props) {
             <CardText>{res.attributes.description}</CardText>
           </CardBody>
           <div className="card-footer">
-            <Button color="info" onClick={() => setRestaurantID(res.id)}>
+            <Button size="sm" color="info" onClick={() => applyRestID(res.id, res.attributes.name)}>
               {res.attributes.name}
             </Button>
           </div>
@@ -83,9 +93,9 @@ function RestaurantList(props) {
 
     return (
       <Container>
-        <Row xs="3">{restList}</Row>
+        <Row sm="3">{restList}</Row>
 
-        <Row xs="3">{renderDishes(restaurantID)}</Row>
+        {/* <Row sm="3">{renderDishes(restaurantID)}</Row> */}
       </Container>
     );
   } else {

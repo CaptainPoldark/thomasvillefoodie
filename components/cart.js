@@ -7,8 +7,7 @@ import AppContext from "./context";
 // we can pass cart data in via props method
 // the alternative is using useContext as below
 function Cart() {
-  let isAuthenticated = true;
-  let { cart, addItem, removeItem } = useContext(AppContext);
+  let { cart, addItem, removeItem, isAuthenticated } = useContext(AppContext);
   //console.log(JSON.stringify(cart));
   //const [cartA, setCartA] = useState({cart})
   //cart = value.cart;
@@ -79,17 +78,34 @@ function Cart() {
   const checkoutItems = () => {
     return (
       <div>
-        <Badge style={{ width: 200, padding: 10 }} color="light">
-          <h5 style={{ fontWeight: 100, color: "gray" }}>Total:</h5>
+        <Badge
+          bg="success"
+          style={{ width: "100%", padding: 10, marginBottom: "1rem" }}
+          color="success"
+        >
+          <h5 style={{ fontWeight: 100 }}>Total:</h5>
           <h3>${cart.total / 100}</h3>
           {console.log("TOTAL")}
           {console.log(cart.total)}
         </Badge>
-        <Link href="/checkout/">
-          <Button style={{ width: "60%" }} color="primary">
-            <a>Order</a>
-          </Button>
-        </Link>
+
+        {isAuthenticated ? (
+          <Link href="/checkout/">
+            <Button style={{ width: "100%" }} color="primary">
+              <a>
+                <h4>Order</h4>
+              </a>
+            </Button>
+          </Link>
+        ) : (
+          <Link href="/login">
+            <Button style={{ width: "100%" }} color="primary">
+              <a>
+                <p>Login to place your order</p>
+              </a>
+            </Button>
+          </Link>
+        )}
       </div>
     );
   };
@@ -108,6 +124,10 @@ function Cart() {
           {cart.items.length ? (
             <div>
               <div>{renderItems()}</div>
+              <Badge bg="secondary">
+                <div>Tax ${((cart.total * 0.04) / 100).toFixed(2)}</div>
+                <div>Service fee ${((cart.total * 0.08) / 100).toFixed(2)}</div>
+              </Badge>
               <div>{checkoutItems()}</div>
             </div>
           ) : (
