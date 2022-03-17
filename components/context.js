@@ -22,7 +22,8 @@ const AppContext = React.createContext({
     updatedAt: String,
   },
   setUser: () => {},
-  restID: Number,
+  setRestID: () =>{},
+  restID: { ID: Number, Name: String},
 });
 
 export default AppContext;

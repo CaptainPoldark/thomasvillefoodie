@@ -8,6 +8,7 @@ import CheckoutForm from "../components/checkoutForm";
 import AppContext from "../components/context";
 import Cart from "../components/cart";
 
+
 function Checkout() {
   const STRIPE_PUBLIC_KEY = "pk_test_51KUL8gJDtFQDLEs1Hwb8wFvEns7jneiJIumEZC825rvqENis0p7jAE7Tg8PT58eIHg18ZtIlUT9J3Fg2qHpgO4U900Z2XCsawP"
   // get app context
@@ -19,6 +20,7 @@ function Checkout() {
   const stripePromise = loadStripe(
     STRIPE_PUBLIC_KEY
   );
+
 
   return (
     <Row>
