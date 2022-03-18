@@ -64,7 +64,7 @@ function MyApp(props) {
       // authenticate the token on the server and place set user object
       let config = {
         method: "get",
-        url: "http://localhost:1337/api/users/me",
+        url: "http://159.223.140.68:1337/api/users/me",
         headers: {
           Authorization: `Bearer ${token}`,
         },
@@ -82,9 +82,9 @@ function MyApp(props) {
         });
     }
   }
-  /* setUser = (user) => {
-    setState({ user });
-  }; */
+  setUser = (user) => {
+    setState({ user: user });
+  };
   addItem = (item) => {
     const { items } = state.cart;
     console.log(state.cart.items);

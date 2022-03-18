@@ -62,7 +62,7 @@ const Layout = () => {
                   onClick={() => {
                     logout();
 
-                    setUser(null);
+                    AppContext.setUser(null);
                   }}
                 >
                   Logout

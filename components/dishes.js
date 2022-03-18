@@ -69,8 +69,8 @@ function Dishes() {
                 style={{ height: "auto" }}
                 src={
                   res.attributes.image.data != null
-                    ? `http://localhost:1337${res.attributes.image.data.attributes.url}`
-                    : `http://localhost:1337/uploads/thumbnail_812966_a01a106a49.png?width=250&height=250`
+                    ? `http://159.223.140.68:1337${res.attributes.image.data.attributes.url}`
+                    : `https://bitsofco.de/content/images/2018/12/broken-1.png`
                 }
               />
               <CardBody>
