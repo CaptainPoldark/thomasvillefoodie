@@ -1,0 +1,97 @@
+<!DOCTYPE html><html><head><title>Thomasville Foodie</title><meta charSet="utf-8"/><meta name="viewport" content="initial-scale=1.0, width=device-width"/><link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous"/><script src="https://js.stripe.com/v3"></script><meta name="next-head-count" content="5"/><noscript data-n-css=""></noscript><script defer="" nomodule="" src="/_next/static/chunks/polyfills-5cd94c89d3acac5f.js"></script><script src="/_next/static/chunks/webpack-d5c25fd331c4dadd.js" defer=""></script><script src="/_next/static/chunks/framework-fff8d04409a07da0.js" defer=""></script><script src="/_next/static/chunks/main-01df828e572375b9.js" defer=""></script><script src="/_next/static/chunks/pages/_app-82b3303aa29cafb4.js" defer=""></script><script src="/_next/static/chunks/pages/checkout-646fe59d1f64355c.js" defer=""></script><script src="/_next/static/v8qmnuYLaHLp7HM3vfw0d/_buildManifest.js" defer=""></script><script src="/_next/static/v8qmnuYLaHLp7HM3vfw0d/_ssgManifest.js" defer=""></script><script src="/_next/static/v8qmnuYLaHLp7HM3vfw0d/_middlewareManifest.js" defer=""></script><style id="__jsx-5b30719cc49bb656">a.jsx-5b30719cc49bb656{color:white}
+h5.jsx-5b30719cc49bb656{color:white;
+padding-top:11px}</style><style id="__jsx-73886ce4ede8a5f5">#item-price.jsx-73886ce4ede8a5f5{font-size:1.3em;
+color:rgba(97, 97, 97, 1)}
+#item-quantity.jsx-73886ce4ede8a5f5{font-size:0.95em;
+padding-bottom:4px;
+color:rgba(158, 158, 158, 1)}
+#item-name.jsx-73886ce4ede8a5f5{font-size:1.3em;
+color:rgba(97, 97, 97, 1)}</style><style id="__jsx-2213986cca10df41">.order-button-wrapper.jsx-2213986cca10df41{display:-webkit-box;
+display:-webkit-flex;
+display:-ms-flexbox;
+display:flex;
+width:100%;
+-webkit-align-items:flex-end;
+-webkit-box-align:flex-end;
+-ms-flex-align:flex-end;
+align-items:flex-end;
+-webkit-box-pack:end;
+-ms-flex-pack:end;
+-webkit-justify-content:flex-end;
+justify-content:flex-end}</style><style id="__jsx-81a0afea84137dc1">.paper{border:1px solid lightgray;
+box-shadow:0px 1px 3px 0px rgba(0, 0, 0, 0.2), 0px 1px 1px 0px rgba(0, 0, 0, 0.14), 0px 2px 1px -1px rgba(0, 0, 0, 0.12);
+height:550px;
+padding:30px;
+background:#fff;
+border-radius:6px;
+margin-top:90px}
+.form-half{-webkit-flex:0.5;
+-ms-flex:0.5;
+flex:0.5}
+*{box-sizing:border-box}
+body, html{background-color:#f6f9fc;
+font-size:18px;
+font-family:Helvetica Neue, Helvetica, Arial, sans-serif}
+h1{color:#32325d;
+font-weight:400;
+line-height:50px;
+font-size:40px;
+margin:20px 0;
+padding:0}
+.Checkout{margin:0 auto;
+max-width:800px;
+box-sizing:border-box;
+padding:0 5px}
+label{color:#6b7c93;
+font-weight:300;
+letter-spacing:0.025em}
+button{white-space:nowrap;
+border:0;
+outline:0;
+display:inline-block;
+height:40px;
+line-height:40px;
+padding:0 14px;
+box-shadow:0 4px 6px rgba(50, 50, 93, 0.11), 0 1px 3px rgba(0, 0, 0, 0.08);
+color:#fff;
+border-radius:4px;
+font-size:15px;
+font-weight:600;
+text-transform:uppercase;
+letter-spacing:0.025em;
+background-color:#6772e5;
+-webkit-text-decoration:none;
+text-decoration:none;
+-webkit-transition:all 150ms ease;
+-webkit-transition:all 150ms ease;
+transition:all 150ms ease;
+margin-top:10px}
+form{margin-bottom:40px;
+padding-bottom:40px;
+border-bottom:3px solid #e6ebf1}
+button:hover{color:#fff;
+cursor:pointer;
+background-color:#7795f8;
+-webkit-transform:translateY(-1px);
+-moz-transform:translateY(-1px);
+-ms-transform:translateY(-1px);
+transform:translateY(-1px);
+box-shadow:0 7px 14px rgba(50, 50, 93, 0.1), 0 3px 6px rgba(0, 0, 0, 0.08)}
+input, .StripeElement{display:block;
+background-color:#f8f9fa!important;
+margin:10px 0 20px 0;
+max-width:500px;
+padding:10px 14px;
+font-size:1em;
+font-family:"Source Code Pro", monospace;
+box-shadow:rgba(50, 50, 93, 0.14902) 0px 1px 3px, rgba(0, 0, 0, 0.0196078) 0px 1px 0px;
+border:0;
+outline:0;
+border-radius:4px;
+background:white}
+input::placeholder{color:#aab7c4}
+input:focus, .StripeElement--focus{box-shadow:rgba(50, 50, 93, 0.109804) 0px 4px 6px, rgba(0, 0, 0, 0.0784314) 0px 1px 3px;
+-webkit-transition:all 150ms ease;
+-webkit-transition:all 150ms ease;
+transition:all 150ms ease}
+.StripeElement.IdealBankElement, .StripeElement.PaymentRequestButton{padding:0}</style></head><body><div id="__next" data-reactroot=""><div><header class="jsx-5b30719cc49bb656"><ul class="navbar navbar-dark bg-dark justify-content-end nav"><li class="nav-item"><a class="jsx-5b30719cc49bb656 navbar-brand" href="/">Home</a></li><li class="nav-item"><a class="jsx-5b30719cc49bb656 nav-link" href="/register"> Sign up! </a></li><li class="nav-item"><a class="jsx-5b30719cc49bb656 nav-link" href="/login">Sign in </a></li></ul></header><div class="container"></div></div><div class="row"><div style="padding-right:0" class="col-sm-3 order-sm-1 offset-sm-2"><h1 style="margin:20px">Checkout</h1><div class="jsx-73886ce4ede8a5f5"><h1 class="jsx-73886ce4ede8a5f5"> Cart</h1><div style="padding:10px 5px" class="cart card"><div style="margin:10px" class="card-title">Your Order:</div><hr class="jsx-73886ce4ede8a5f5"/><div style="padding:10px" class="card-body"><div style="margin-bottom:6px" class="jsx-73886ce4ede8a5f5"><small class="jsx-73886ce4ede8a5f5">Items:</small></div><h3 class="jsx-73886ce4ede8a5f5">Start adding items to your cart</h3></div></div></div></div><div style="padding-left:5px" class="col-sm-6 order-sm-2"><div class="jsx-81a0afea84137dc1 paper"><h5 class="jsx-81a0afea84137dc1">Your information:</h5><hr class="jsx-81a0afea84137dc1"/><div style="display:flex" class="form-group"><div style="flex:0.90;margin-right:10px" class="jsx-81a0afea84137dc1"><label class="">Address</label><input type="text" name="address" class="form-control"/></div></div><div style="display:flex" class="form-group"><div style="flex:0.65;margin-right:6%" class="jsx-81a0afea84137dc1"><label class="">City</label><input type="text" name="city" class="form-control"/></div><div style="flex:0.25;margin-right:0" class="jsx-81a0afea84137dc1"><label class="">State</label><input type="text" name="state" class="form-control"/></div></div><div class="jsx-2213986cca10df41"><div class="jsx-2213986cca10df41"><label for="card-element" class="jsx-2213986cca10df41">Credit or debit card</label><div class="jsx-2213986cca10df41"><fieldset style="border:none" class="jsx-2213986cca10df41"><div class="jsx-2213986cca10df41 form-row"><div id="card-element" style="width:100%" class="jsx-2213986cca10df41"><div></div></div><br class="jsx-2213986cca10df41"/><div class="jsx-2213986cca10df41 order-button-wrapper"><button class="jsx-2213986cca10df41">Confirm order</button></div><div id="card-errors" role="alert" class="jsx-2213986cca10df41"></div></div></fieldset></div></div></div></div></div></div></div><script id="__NEXT_DATA__" type="application/json">{"props":{"pageProps":{}},"page":"/checkout","query":{},"buildId":"v8qmnuYLaHLp7HM3vfw0d","nextExport":true,"autoExport":true,"isFallback":false,"scriptLoader":[]}</script></body></html>
