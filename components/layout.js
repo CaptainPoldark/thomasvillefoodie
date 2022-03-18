@@ -8,7 +8,7 @@ import { logout } from "../components/auth";
 import AppContext from "./context";
 
 const Layout = () => {
-  const title = "Welcome to Nextjs";
+  const title = "Thomasville Foodie";
   let { user, isAuthenticated } = useContext(AppContext);
   return (
     <div>

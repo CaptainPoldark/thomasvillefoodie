@@ -64,7 +64,7 @@ function MyApp(props) {
       // authenticate the token on the server and place set user object
       let config = {
         method: "get",
-        url: "http://159.223.140.68:1337/api/users/me",
+        url: "https://foodiedb.battlegroundls.com/api/users/me",
         headers: {
           Authorization: `Bearer ${token}`,
         },
