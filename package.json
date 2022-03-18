@@ -5,7 +5,8 @@
   "scripts": {
     "dev": "next dev",
     "build": "next build",
-    "start": "next start"
+    "start": "next start",
+    "deploy": "next build && next export && git add .next/static/chunks/pages/ -f && git commit -m \"Deploy gh-pages\" && git subtree push --prefix .next/static/chunks/pages/ origin gh-pages"
   },
   "dependencies": {
     "@apollo/client": "^3.2.4",
