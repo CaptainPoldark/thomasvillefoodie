@@ -102,7 +102,7 @@ function Dishes() {
       </>
     );
   } else {
-    return <h1> No Dishes</h1>;
+    return <h1> No dishes at this restaurant yet</h1>;
   }
 }
 export default Dishes;
