@@ -69,7 +69,7 @@ function Dishes() {
                 style={{ height: "auto" }}
                 src={
                   res.attributes.image.data != null
-                    ? `http://159.223.140.68:1337${res.attributes.image.data.attributes.url}`
+                    ? `https://foodiedb.battlegroundls.com${res.attributes.image.data.attributes.url}`
                     : `https://bitsofco.de/content/images/2018/12/broken-1.png`
                 }
               />
