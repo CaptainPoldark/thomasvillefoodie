@@ -5,7 +5,8 @@ import Router from "next/router";
 import Cookie from "js-cookie";
 import axios from "axios";
 
-const API_URL = process.env.NEXT_PUBLIC_API_URL || "https://foodiedb.battlegroundls.com";
+const API_URL =
+  process.env.NEXT_PUBLIC_API_URL || "https://foodiedb.battlegroundls.com";
 
 //register a new user
 export const registerUser = (username, email, password) => {
@@ -38,6 +39,7 @@ export const login = (identifier, password) => {
   }
 
   return new Promise((resolve, reject) => {
+    let errorMessage = "";
     axios
       .post(`${API_URL}/api/auth/local`, { identifier, password })
       .then((res) => {
@@ -52,18 +54,22 @@ export const login = (identifier, password) => {
       .catch((error) => {
         //reject the promise and pass the error object back to the form
         reject(error);
+        errorMessage = error.response.message;
+        console.log(errorMessage);
+        return errorMessage;
       });
   });
 };
 
-export const logout = () => {
+export const logout = (setUser) => {
   //remove token and user cookie
   Cookie.remove("token");
   delete window.__user;
+
   // sync logout between multiple windows
   window.localStorage.setItem("logout", Date.now());
   //redirect to the home page
-  Router.push("/");
+  
 };
 
 //Higher Order Component to wrap our pages and logout simultaneously logged in tabs

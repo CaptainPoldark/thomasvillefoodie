@@ -4,10 +4,13 @@ import { Button, Card, CardBody, CardTitle, Badge } from "reactstrap";
 
 import Link from "next/link";
 import AppContext from "./context";
+import { FetchEvent } from "next/dist/server/web/spec-compliant/fetch-event";
 // we can pass cart data in via props method
 // the alternative is using useContext as below
 function Cart() {
   let { cart, addItem, removeItem, isAuthenticated } = useContext(AppContext);
+  cart.fee = (cart.total * 0.08)
+  cart.tax = (cart.total * 0.04)
   //console.log(JSON.stringify(cart));
   //const [cartA, setCartA] = useState({cart})
   //cart = value.cart;
@@ -88,6 +91,10 @@ function Cart() {
           {console.log("TOTAL")}
           {console.log(cart.total)}
         </Badge>
+        <Badge bg="secondary">
+          <div>Tax ${(cart.tax / 100).toFixed(2)}</div>
+          <div>Service fee ${(cart.fee / 100).toFixed(2)}</div>
+        </Badge>
 
         {isAuthenticated ? (
           <Link href="/checkout/">
@@ -121,13 +128,10 @@ function Cart() {
           <div style={{ marginBottom: 6 }}>
             <small>Items:</small>
           </div>
-          {cart.items.length ? (
+          {cart ? (
             <div>
               <div>{renderItems()}</div>
-              <Badge bg="secondary">
-                <div>Tax ${((cart.total * 0.04) / 100).toFixed(2)}</div>
-                <div>Service fee ${((cart.total * 0.08) / 100).toFixed(2)}</div>
-              </Badge>
+              <div></div>
               <div>{checkoutItems()}</div>
             </div>
           ) : (

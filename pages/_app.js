@@ -40,7 +40,7 @@ function MyApp(props) {
     cart: cart,
   });
   const [restState, setRestState] = useState({
-    restID
+    restID,
   });
   const [userState, setUserState] = useState({
     user: user,
@@ -83,7 +83,22 @@ function MyApp(props) {
     }
   }
   setUser = (user) => {
-    setState({ user: user });
+    if (token) {
+      setState({ user: user });
+    } else {
+      setState({
+        user: {
+          id: Number,
+          username: String,
+          email: String,
+          provider: String,
+          confirmed: Boolean,
+          blocked: Boolean,
+          createdAt: String,
+          updatedAt: String,
+        },
+      });
+    }
   };
   addItem = (item) => {
     const { items } = state.cart;
@@ -172,7 +187,7 @@ function MyApp(props) {
         removeItem: removeItem,
         isAuthenticated: userState.isAuthenticated,
         user: userState.user,
-        setUser: () => {},
+        setUser: setUser,
         setRestID,
         restID: restState,
       }}

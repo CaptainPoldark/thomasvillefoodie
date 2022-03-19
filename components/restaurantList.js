@@ -51,8 +51,6 @@ function RestaurantList(props) {
     return res.attributes.name.toLowerCase().includes(props.search);
   });
 
-  let restId = searchQuery[0].id;
-
   // definet renderer for Dishes
   const renderDishes = (restaurantID) => {
     return <Dishes restId={restaurantID}> </Dishes>;
@@ -60,8 +58,7 @@ function RestaurantList(props) {
 
   const applyRestID = (ID, name) => {
     setRestID(ID, name);
-    let path = searchQuery[ID - 1].attributes.name;
-    path = path.split(" ").join("");
+    let path = name.split(" ").join("");
 
     router.push(`/restaurants/${path}`);
   };
@@ -76,14 +73,19 @@ function RestaurantList(props) {
             top={true}
             style={{ height: "auto" }}
             src={
-              `https://foodiedb.battlegroundls.com` + res.attributes.image.data.attributes.url
+              `https://foodiedb.battlegroundls.com` +
+              res.attributes.image.data.attributes.url
             }
           />
           <CardBody>
             <CardText>{res.attributes.description}</CardText>
           </CardBody>
           <div className="card-footer">
-            <Button size="sm" color="info" onClick={() => applyRestID(res.id, res.attributes.name)}>
+            <Button
+              size="sm"
+              color="info"
+              onClick={() => applyRestID(res.id, res.attributes.name)}
+            >
               {res.attributes.name}
             </Button>
           </div>

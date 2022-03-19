@@ -7,7 +7,7 @@ import React from "react";
 // set backup default for isAuthenticated if none is provided in Provider
 const AppContext = React.createContext({
   isAuthenticated: false,
-  cart: { items: [], total: 0 },
+  cart: { items: [], total: 0, tax: Number, fee: Number },
   addItem: () => {},
   removeItem: () => {},
   emptyCart: () => {},
@@ -22,8 +22,8 @@ const AppContext = React.createContext({
     updatedAt: String,
   },
   setUser: () => {},
-  setRestID: () =>{},
-  restID: { ID: Number, Name: String},
+  setRestID: () => {},
+  restID: { ID: Number, Name: String },
 });
 
 export default AppContext;

@@ -6,10 +6,11 @@ import Link from "next/link";
 import { Container, Nav, NavItem, Badge } from "reactstrap";
 import { logout } from "../components/auth";
 import AppContext from "./context";
+import Router from "next/router";
 
 const Layout = () => {
   const title = "Thomasville Foodie";
-  let { user, isAuthenticated } = useContext(AppContext);
+  let { user, isAuthenticated, setUser } = useContext(AppContext);
   return (
     <div>
       <Head>
@@ -61,8 +62,8 @@ const Layout = () => {
                   className="nav-link"
                   onClick={() => {
                     logout();
-
-                    AppContext.setUser(null);
+                    setUser();
+                    Router.push("/");
                   }}
                 >
                   Logout

@@ -12,7 +12,7 @@ import {
   Row,
   Col,
 } from "reactstrap";
-function Dishes() {
+function Dishes(props) {
   //const [restaurantID, setRestaurantID] = useState();
 
   const { addItem, restID } = useContext(AppContext);
@@ -58,47 +58,90 @@ function Dishes() {
 
   let restaurant = data.restaurant.data;
 
+  let searchQuery = restaurant.attributes.dishes.data.filter((res) => {
+    return res.attributes.name.toLowerCase().includes(props.search);
+  });
+
   if (restID.ID > 0) {
     return (
       <>
-        {restaurant.attributes.dishes.data.map((res) => (
-          <Col xs="6" sm="4" style={{ padding: 0 }} key={res.id}>
-            <Card style={{ margin: "1.2em", height: "auto" }}>
-              <CardImg
-                top={true}
-                style={{ height: "auto" }}
-                src={
-                  res.attributes.image.data != null
-                    ? `https://foodiedb.battlegroundls.com${res.attributes.image.data.attributes.url}`
-                    : `https://bitsofco.de/content/images/2018/12/broken-1.png`
-                }
-              />
-              <CardBody>
-                <CardTitle>
-                  <h3>{res.attributes.name}</h3>
-                </CardTitle>
-                <CardText>
-                  {res.attributes.description}
-                  <br />
-                  <br />
-                  <h4>${res.attributes.price / 100}</h4>
-                </CardText>
-              </CardBody>
-              <div className="card-footer">
-                <Button
-                  color="info"
-                  outline
-                  onClick={(e) => {
-                    e.preventDefault();
-                    addItem(res.attributes);
-                  }}
-                >
-                  + Add To Cart
-                </Button>
-              </div>
-            </Card>
-          </Col>
-        ))}
+        {props.search.length > 1
+          ? searchQuery.map((res) => (
+              <Col xs="6" sm="4" style={{ padding: 0 }} key={res.id}>
+                <Card style={{ margin: "1.2em", height: "auto" }}>
+                  <CardImg
+                    top={true}
+                    style={{ height: "auto" }}
+                    src={
+                      res.attributes.image.data != null
+                        ? `https://foodiedb.battlegroundls.com${res.attributes.image.data.attributes.url}`
+                        : `https://bitsofco.de/content/images/2018/12/broken-1.png`
+                    }
+                  />
+                  <CardBody>
+                    <CardTitle>
+                      <h3>{res.attributes.name}</h3>
+                    </CardTitle>
+                    <CardText>
+                      {res.attributes.description}
+                      <br />
+                      <br />
+                      <h4>${(res.attributes.price / 100).toFixed(2)}</h4>
+                    </CardText>
+                  </CardBody>
+                  <div className="card-footer">
+                    <Button
+                      color="info"
+                      outline
+                      onClick={(e) => {
+                        e.preventDefault();
+                        addItem(res.attributes);
+                      }}
+                    >
+                      + Add To Cart
+                    </Button>
+                  </div>
+                </Card>
+              </Col>
+            ))
+          : restaurant.attributes.dishes.data.map((res) => (
+              <Col xs="6" sm="4" style={{ padding: 0 }} key={res.id}>
+                <Card style={{ margin: "1.2em", height: "auto" }}>
+                  <CardImg
+                    top={true}
+                    style={{ height: "auto" }}
+                    src={
+                      res.attributes.image.data != null
+                        ? `https://foodiedb.battlegroundls.com${res.attributes.image.data.attributes.url}`
+                        : `https://bitsofco.de/content/images/2018/12/broken-1.png`
+                    }
+                  />
+                  <CardBody>
+                    <CardTitle>
+                      <h3>{res.attributes.name}</h3>
+                    </CardTitle>
+                    <CardText>
+                      {res.attributes.description}
+                      <br />
+                      <br />
+                      <h4>${(res.attributes.price / 100).toFixed(2)}</h4>
+                    </CardText>
+                  </CardBody>
+                  <div className="card-footer">
+                    <Button
+                      color="info"
+                      outline
+                      onClick={(e) => {
+                        e.preventDefault();
+                        addItem(res.attributes);
+                      }}
+                    >
+                      + Add To Cart
+                    </Button>
+                  </div>
+                </Card>
+              </Col>
+            ))}
       </>
     );
   } else {
