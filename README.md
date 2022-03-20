@@ -2,6 +2,10 @@
 
 ## Online food ordering app with Stripe integration
 
+#### Live Demo on Digital Ocean
+
+(https://thomasvillefoodie-dawry.ondigitalocean.app/)
+
 ### Installing and Running
 
 #### Install dependencies using NPM or Yarn
