@@ -178,13 +178,13 @@ function MyApp(props) {
     if (foundItem.quantity > 1) {
       var newCart = {
         items: items.map((item) => {
-          if (item.iname === foundItem.name) {
+          if (item.name === foundItem.name) {
             return Object.assign({}, item, { quantity: item.quantity - 1 });
           } else {
             return item;
           }
         }),
-        total: state.cart.total - item.attributes.price,
+        total: state.cart.total - item.price,
         fee: (state.cart.total - item.price) * 0.08,
         tax: (state.cart.total - item.price) * 0.04,
       };
@@ -195,6 +195,7 @@ function MyApp(props) {
       const index = items.findIndex((i) => i.name === foundItem.name);
       items.splice(index, 1);
       var newCart = {
+        items: [],
         total: state.cart.total - item.price,
         fee: (state.cart.total - item.price) * 0.08,
         tax: (state.cart.total - item.price) * 0.04,
