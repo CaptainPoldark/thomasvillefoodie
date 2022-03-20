@@ -39,9 +39,8 @@ function OrderHistory() {
               <br />
             </>
           ))}
-          <br />
           Price: ${order.attributes.amount}
-          <br />
+          <br/>
           Transaction ID: {order.attributes.charge_id}
           <br />
           <br />

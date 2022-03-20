@@ -53,7 +53,7 @@ function Home() {
           <Col >
             <RestaurantList search={query} />
           </Col>
-          <Col xs="4" sm="3" style={{ padding: 0 }}>
+          <Col >
             <Cart> </Cart>
           </Col>
         </Row>

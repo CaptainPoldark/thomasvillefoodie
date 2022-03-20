@@ -5,6 +5,7 @@ import { Button, Card, CardBody, CardTitle, Badge } from "reactstrap";
 import Link from "next/link";
 import AppContext from "./context";
 
+
 function Cart() {
   let { cart, addItem, removeItem, isAuthenticated } = useContext(AppContext);
   //console.log(JSON.stringify(cart));
@@ -91,6 +92,7 @@ function Cart() {
           <div>Tax ${(cart.tax / 100).toFixed(2)}</div>
           <div>Service fee ${(cart.fee / 100).toFixed(2)}</div>
         </Badge>
+        <br/>
 
         {isAuthenticated ? (
           <Link href="/checkout/">
@@ -102,10 +104,7 @@ function Cart() {
           </Link>
         ) : (
           <Link href="/login">
-            <Button
-              style={{ width: "100%", alignItems: "center" }}
-              color="primary"
-            >
+            <Button style={{ width: "100%" }} color="primary">
               <a>
                 <p>Login to place your order</p>
               </a>
@@ -120,10 +119,10 @@ function Cart() {
   return (
     <div>
       <h1> Cart</h1>
-      <Card className="cart">
+      <Card  >
         <CardTitle style={{ margin: 10 }}>Your Order:</CardTitle>
         <hr />
-        <CardBody style={{ padding: 10 }}>
+        <CardBody >
           <div style={{ marginBottom: 6 }}>
             <small>Items:</small>
           </div>

@@ -67,8 +67,10 @@ function Dishes(props) {
       <>
         {props.search.length > 1
           ? searchQuery.map((res) => (
-              <Col xs="6" sm="4" style={{ padding: 0 }} key={res.id}>
-                <Card style={{ margin: "1.2em", height: "auto" }}>
+              <Col skey={res.id}>
+                <Card
+                  style={{ margin: "1.2rem", height: "35rem", width: "auto" }}
+                >
                   <CardImg
                     top={true}
                     style={{ height: "auto" }}
@@ -89,24 +91,25 @@ function Dishes(props) {
                       <h4>${(res.attributes.price / 100).toFixed(2)}</h4>
                     </CardText>
                   </CardBody>
-                  <div className="card-footer">
-                    <Button
-                      color="info"
-                      outline
-                      onClick={(e) => {
-                        e.preventDefault();
-                        addItem(res.attributes);
-                      }}
-                    >
-                      + Add To Cart
-                    </Button>
-                  </div>
+
+                  <Button
+                    color="info"
+                    outline
+                    onClick={(e) => {
+                      e.preventDefault();
+                      addItem(res.attributes);
+                    }}
+                  >
+                    + Add To Cart
+                  </Button>
                 </Card>
               </Col>
             ))
           : restaurant.attributes.dishes.data.map((res) => (
-              <Col xs="6" sm="4" style={{ padding: 0 }} key={res.id}>
-                <Card style={{ margin: "1.2em", height: "auto" }}>
+              <Col key={res.id}>
+                <Card
+                  style={{ margin:"0.5rem",height: "35rem", width: "20rem", padding: "1.5rem" }}
+                >
                   <CardImg
                     top={true}
                     style={{ height: "auto" }}
@@ -118,27 +121,31 @@ function Dishes(props) {
                   />
                   <CardBody>
                     <CardTitle>
-                      <h3>{res.attributes.name}</h3>
+                      <h5>{res.attributes.name}</h5>
                     </CardTitle>
-                    <CardText>
-                      {res.attributes.description}
-                      <br />
-                      <br />
-                      <h4>${(res.attributes.price / 100).toFixed(2)}</h4>
-                    </CardText>
+                    {res.attributes.description ? (
+                      <CardText>
+                        <p style={{ overflow: "scroll" }}>
+                          {res.attributes.description}
+                        </p>
+                      </CardText>
+                    ) : (
+                      ""
+                    )}
+
+                    <h4>${(res.attributes.price / 100).toFixed(2)}</h4>
                   </CardBody>
-                  <div className="card-footer">
-                    <Button
-                      color="info"
-                      outline
-                      onClick={(e) => {
-                        e.preventDefault();
-                        addItem(res.attributes);
-                      }}
-                    >
-                      + Add To Cart
-                    </Button>
-                  </div>
+                  <Button
+                    className="card-footer"
+                    color="info"
+                    outline
+                    onClick={(e) => {
+                      e.preventDefault();
+                      addItem(res.attributes);
+                    }}
+                  >
+                    + Add To Cart
+                  </Button>
                 </Card>
               </Col>
             ))}

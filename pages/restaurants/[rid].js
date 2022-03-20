@@ -37,7 +37,7 @@ const Restaurant = () => {
         </Link>
         \{restID.Name}
       </h3>
-      <InputGroup>
+      <InputGroup style={{margin: "1em", width:"90%"}}>
         <InputGroupAddon addonType="append"> Search </InputGroupAddon>
         <Input
           onChange={(e) => setDishSearch(e.target.value.toLocaleLowerCase())}
@@ -45,10 +45,10 @@ const Restaurant = () => {
         />
       </InputGroup>
       <Row>
-        <Col xs="4" sm="9" style={{ padding: "1em" }}>
+        <Col >
           <Row sm="3">{renderDishes()}</Row>
         </Col>
-        <Col xs="4" sm="3" style={{ padding: "1em" }}>
+        <Col sm="3">
           <Cart> </Cart>
         </Col>
       </Row>

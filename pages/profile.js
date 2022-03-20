@@ -21,9 +21,9 @@ function Profile(props) {
   let { user, isAuthenticated } = useContext(AppContext);
 
   return (
-    <Container style={{marginTop: "1em"}}>
+    <Container style={{ marginTop: "1em" }}>
       <Row>
-        <Col xs="4" sm="4" style={{ padding: 0 }}>
+        <Col>
           <Card style={{ margin: "0 1rem 1em 1em", height: "auto" }}>
             <CardImg top={true} style={{ height: "auto" }} src={``} />
             <CardBody>
@@ -41,19 +41,19 @@ function Profile(props) {
               </CardText>
             </CardBody>
             <div className="card-footer">
-              <Button disabled={true} color="success" >
+              <Button disabled={true} color="success">
                 Save
               </Button>
             </div>
           </Card>
         </Col>
-        <Col xs="8" sm="8" style={{ padding: 0 }}>
-          <Card style={{ margin: "0 0.5rem 20px 0.5rem", height: "auto" }}>
+        <Col>
+          <Card style={{ margin: "0 0.5rem 20px 0.5rem" }}>
             <CardBody>
               <CardTitle>
                 <h3>All Orders</h3>
               </CardTitle>
-              <CardText>
+              <CardText style={{ height: "35rem", overflow: "scroll" }}>
                 <OrderHistory />
               </CardText>
             </CardBody>
