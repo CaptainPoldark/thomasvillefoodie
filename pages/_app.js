@@ -32,6 +32,7 @@ function MyApp(props) {
     emptyCart,
     user,
     setUser,
+    unsetUser,
     isAuthenticated,
     setRestID,
     restID,
@@ -82,28 +83,47 @@ function MyApp(props) {
         });
     }
   }
-  setUser = (user) => {
+  setUser = () => {
     if (token) {
-      setState({ user: user });
-    } else {
-      setState({
-        user: {
-          id: Number,
-          username: String,
-          email: String,
-          provider: String,
-          confirmed: Boolean,
-          blocked: Boolean,
-          createdAt: String,
-          updatedAt: String,
+      // authenticate the token on the server and place set user object
+      let config = {
+        method: "get",
+        url: "https://foodiedb.battlegroundls.com/api/users/me",
+        headers: {
+          Authorization: `Bearer ${token}`,
         },
-      });
+      };
+      /*     setUser = (user) => {
+            setState({ user: user });
+          }; */
+      axios(config)
+        .then(function (response) {
+          if (token) {
+            setUserState({ user: response.data, isAuthenticated: true });
+          }
+        })
+        .catch(function (error) {
+          console.log(error);
+        });
     }
   };
+
+  unsetUser = () => {
+    setUserState({
+      user: {
+        id: Number,
+        username: String,
+        email: String,
+        provider: String,
+        confirmed: Boolean,
+        blocked: Boolean,
+        createdAt: String,
+        updatedAt: String,
+      },
+      isAuthenticated: false,
+    });
+  };
   addItem = (item) => {
-    const { items } = state.cart;
-    console.log(state.cart.items);
-    console.log(JSON.stringify(item));
     //check for item already in cart
     //if not in cart, add item if item is found increase quanity ++
     let foundItem = false;
@@ -124,7 +144,10 @@ function MyApp(props) {
       var newCart = {
         items: [...state.cart.items, temp],
         total: state.cart.total + item.price,
+        fee: (state.cart.total + item.price) * 0.08,
+        tax: (state.cart.total + item.price) * 0.04,
       };
+
       setState({ cart: newCart });
 
       console.log(`Total items: ${JSON.stringify(newCart)}`);
@@ -140,6 +163,8 @@ function MyApp(props) {
           }
         }),
         total: state.cart.total + item.price,
+        fee: (state.cart.total + item.price) * 0.08,
+        tax: (state.cart.total + item.price) * 0.04,
       };
     }
     setState({ cart: newCart }); // problem is this is not updated yet
@@ -160,6 +185,8 @@ function MyApp(props) {
           }
         }),
         total: state.cart.total - item.attributes.price,
+        fee: (state.cart.total - item.price) * 0.08,
+        tax: (state.cart.total - item.price) * 0.04,
       };
       //console.log(`NewCart after remove: ${JSON.stringify(newCart)}`)
     } else {
@@ -168,15 +195,17 @@ function MyApp(props) {
       const index = items.findIndex((i) => i.name === foundItem.name);
       items.splice(index, 1);
       var newCart = {
-        items: items,
-        total: state.cart.total - item.attributes.price,
+        items: [...state.cart.items, temp],
+        total: state.cart.total - item.price,
+        fee: (state.cart.total - item.price) * 0.08,
+        tax: (state.cart.total - item.price) * 0.04,
       };
     }
 
     setState({ cart: newCart });
   };
   emptyCart = () => {
-    setState({ cart: [] });
+    setState({ cart: { items: [], total: 0, tax: 0, fee: 0 } });
   };
 
   return (
@@ -188,7 +217,9 @@ function MyApp(props) {
         isAuthenticated: userState.isAuthenticated,
         user: userState.user,
         setUser: setUser,
+        unsetUser,
         setRestID,
+        emptyCart,
         restID: restState,
       }}
     >

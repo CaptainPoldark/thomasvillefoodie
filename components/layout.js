@@ -10,7 +10,7 @@ import Router from "next/router";
 
 const Layout = () => {
   const title = "Thomasville Foodie";
-  let { user, isAuthenticated, setUser } = useContext(AppContext);
+  let { user, isAuthenticated, unsetUser, emptyCart } = useContext(AppContext);
   return (
     <div>
       <Head>
@@ -61,8 +61,9 @@ const Layout = () => {
                 <a
                   className="nav-link"
                   onClick={() => {
+                    unsetUser();
+                    emptyCart();
                     logout();
-                    setUser();
                     Router.push("/");
                   }}
                 >

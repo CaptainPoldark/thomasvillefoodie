@@ -50,7 +50,7 @@ function Home() {
         </div>
 
         <Row>
-          <Col xs="4" sm="9" style={{ padding: 0 }}>
+          <Col >
             <RestaurantList search={query} />
           </Col>
           <Col xs="4" sm="3" style={{ padding: 0 }}>

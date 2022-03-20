@@ -64,8 +64,15 @@ function RestaurantList(props) {
   };
   if (searchQuery.length > 0) {
     const restList = searchQuery.map((res) => (
-      <Col sm="4" medium="6" key={res.id}>
-        <Card style={{ marginTop: "1em", height: "30rem" }}>
+      <Col key={res.id}>
+        <Card
+          style={{
+            marginTop: "1em",
+            minWidth: "15rem",
+            height: "35em",
+            maxheight: "35rem",
+          }}
+        >
           <CardTitle>
             <h3>{res.attributes.name}</h3>
           </CardTitle>
@@ -77,8 +84,12 @@ function RestaurantList(props) {
               res.attributes.image.data.attributes.url
             }
           />
-          <CardBody>
-            <CardText>{res.attributes.description}</CardText>
+          <CardBody style={{ overflow: "auto" }}>
+            <CardText>
+              <div style={{ position: "absolute", bottom: "30%" }}>
+                {res.attributes.description}
+              </div>
+            </CardText>
           </CardBody>
           <div className="card-footer">
             <Button
@@ -95,7 +106,7 @@ function RestaurantList(props) {
 
     return (
       <Container>
-        <Row sm="3">{restList}</Row>
+        <Row>{restList}</Row>
 
         {/* <Row sm="3">{renderDishes(restaurantID)}</Row> */}
       </Container>
