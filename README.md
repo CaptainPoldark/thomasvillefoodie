@@ -4,7 +4,7 @@
 
 #### Live Demo on Digital Ocean
 
-(https://thomasvillefoodie-dawry.ondigitalocean.app/)
+https://thomasvillefoodie-dawry.ondigitalocean.app/
 
 ### Installing and Running
 
