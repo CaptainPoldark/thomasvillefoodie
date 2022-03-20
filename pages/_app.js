@@ -195,7 +195,6 @@ function MyApp(props) {
       const index = items.findIndex((i) => i.name === foundItem.name);
       items.splice(index, 1);
       var newCart = {
-        items: [...state.cart.items, temp],
         total: state.cart.total - item.price,
         fee: (state.cart.total - item.price) * 0.08,
         tax: (state.cart.total - item.price) * 0.04,
