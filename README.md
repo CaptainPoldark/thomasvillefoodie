@@ -12,7 +12,7 @@ Card Number:     4242 4242 4242 4242
 
 Expiration Date: 0424 
 
-Zip Code: Any Zip Code
+Zip Code:        Any Zip Code
 
 ### Installing and Running
 
