@@ -100,3 +100,7 @@ captainpoldark
 ### Version
 
 1.5.0
+
+### License
+
+MIT License
