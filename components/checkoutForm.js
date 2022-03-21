@@ -70,9 +70,11 @@ function CheckoutForm() {
       console.log(response.statusText);
     }
     if (response.ok) {
-      setError("Payment Processed Successfully!");
+      setError("Payment Processed Successfully! You'll be taken back to the homepage shortly.");
 
-      setTimeout(1000, Router.push("/"));
+      setTimeout(() => {
+        Router.push("/");
+      }, 5000);
     }
 
     // OTHER stripe methods you can use depending on app

@@ -14,6 +14,7 @@ import {
 } from "reactstrap";
 import { registerUser } from "../components/auth";
 import AppContext from "../components/context";
+import Router from "next/router";
 
 const Register = () => {
   const [data, setData] = useState({ email: "", username: "", password: "" });
@@ -117,6 +118,9 @@ const Register = () => {
                             setStatus(
                               "Your account has been registered. Please Login"
                             );
+                            setTimeout(() => {
+                              Router.push("/login");
+                            }, 3000);
                           })
                           .catch((error) => {
                             console.log(`error in register: ${error}`);
