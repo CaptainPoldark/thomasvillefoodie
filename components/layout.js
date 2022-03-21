@@ -61,8 +61,8 @@ const Layout = () => {
                 <a
                   className="nav-link"
                   onClick={() => {
-                    unsetUser();
                     emptyCart();
+                    unsetUser();
                     logout();
                     Router.push("/");
                   }}
