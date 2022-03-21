@@ -6,6 +6,9 @@
 
 https://thomasvillefoodie-dawry.ondigitalocean.app/
 
+Use Stripe's test credit card
+4242 4242 4242 4242 0424 <Any Zipcode>
+
 ### Installing and Running
 
 #### Install dependencies using NPM or Yarn
