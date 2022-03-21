@@ -19,6 +19,8 @@ function Login(props) {
   const [data, updateData] = useState({ identifier: "", password: "" });
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(false);
+  const [status, setStatus] = useState("");
+  const [validEmail, setValidEmail] = useState(true);
 
   const router = useRouter();
   const appContext = useContext(AppContext);
@@ -39,8 +41,15 @@ function Login(props) {
         <Col sm="12" md={{ size: 5, offset: 3 }}>
           <div className="paper">
             <div className="header">
-            <div style={{display: "flex", justifyContent: "center", alignItems: "center", height: "100%"}}>
-              <h2 style={{ color: "white" }}>Login To Your Account</h2>
+              <div
+                style={{
+                  display: "flex",
+                  justifyContent: "center",
+                  alignItems: "center",
+                  height: "100%",
+                }}
+              >
+                <h2 style={{ color: "white" }}>Login To Your Account</h2>
               </div>
             </div>
             <section className="wrapper">
@@ -52,9 +61,7 @@ function Login(props) {
                       key={error.messages[0].id}
                       style={{ marginBottom: 10 }}
                     >
-                      <small style={{ color: "red" }}>
-                        {error.messages[0].message}
-                      </small>
+                      <small style={{ color: "red" }}>{status}</small>
                     </div>
                   );
                 })}
@@ -63,9 +70,14 @@ function Login(props) {
                   <FormGroup>
                     <Label>Email:</Label>
                     <Input
-                      onChange={(event) => onChange(event)}
+                      onChange={(event) => {
+                        onChange(event);
+                        
+                      }}
                       name="identifier"
+                      type="email"
                       style={{ height: 50, fontSize: "1.2em" }}
+                      required
                     />
                   </FormGroup>
                   <FormGroup style={{ marginBottom: 30 }}>
@@ -75,6 +87,7 @@ function Login(props) {
                       type="password"
                       name="password"
                       style={{ height: 50, fontSize: "1.2em" }}
+                      required
                     />
                   </FormGroup>
 
@@ -85,6 +98,9 @@ function Login(props) {
                       </a>
                     </span>
                     <Button
+                      disabled={
+                        !(data.identifier && data.password)
+                      }
                       style={{ float: "right", width: 120 }}
                       color="primary"
                       onClick={() => {
@@ -97,6 +113,13 @@ function Login(props) {
                           })
                           .catch((error) => {
                             //setError(error.response.data);
+                            setStatus(
+                              "Sorry, either the email or password were incorrect."
+                            );
+                            setTimeout(() => {
+                              setStatus("");
+                            }, 5000);
+
                             setLoading(false);
                           });
                       }}
@@ -105,6 +128,11 @@ function Login(props) {
                     </Button>
                   </FormGroup>
                 </fieldset>
+
+                <h5>{status}</h5>
+                <h5>
+                  {validEmail ? "" : "Please, enter a valid email address"}
+                </h5>
               </Form>
             </section>
           </div>
